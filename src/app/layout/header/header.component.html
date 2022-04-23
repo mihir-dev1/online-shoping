@@ -1,0 +1,67 @@
+<p-toast></p-toast>
+<div class="navbar-custom">
+  <div class="top-header-task">
+    <button class="button-menu-mobile open-left mb-menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="23.319" height="19.984" viewBox="0 0 23.319 19.984">
+        <path id="_" data-name=""
+          d="M22.41,14.848l-.017,1.411q0,.286-.281.5t-.653.209H1.112q-.376,0-.653-.209t-.28-.5L.164,14.848q0-.287.27-.5t.65-.21H21.491q.377,0,.65.21T22.41,14.848Zm.071-5.686-.018,1.428q0,.29-.282.5t-.657.211H1.055q-.378,0-.656-.211t-.282-.5L.1,9.162q0-.291.271-.5t.654-.213h20.53q.379,0,.654.213T22.481,9.162Zm.071-5.755-.018,1.445q0,.293-.284.507t-.661.214H1q-.38,0-.66-.214T.054,4.853L.038,3.408q0-.294.273-.509t.658-.215H21.622q.381,0,.657.215T22.552,3.408Z"
+          fill="#24975f" />
+      </svg> </button>
+    <div class="task-header-title">
+      <div class="task-img"><img src="/assets/images/icons/dashboard-green.svg"></div>
+      <h3 class="h3 mb-0">Products <span class="small-text d-block">Products / {{title}}</span></h3>
+    </div>
+    <ul class="list-unstyled topbar-menu mb-0">
+      <li class="notification-list" *ngIf="cartOrderList.length !== 0">
+        <div class="notification-icon">
+          <span>
+            <p-button icon="pi pi-shopping-cart" routerLink="/view-cart"></p-button>
+          </span>
+          <span class="notification-number small-text">{{cartOrderList ? cartOrderList.length : '0'}}</span>
+        </div>
+      </li>
+      <li class="notification-list" *ngIf="userRole == 1">
+        <button class="btn btn-green" (click)="showBasicDialog()">Add New Products</button>
+      </li>
+      <p-button [label]="userName | titlecase " icon="pi pi-user"></p-button>
+      <button type="button" class="btn btn-green" pButton label="Logout" icon="pi pi-power-off"
+        style="margin-left:1.25em;background-color: #24985f;" (click)="Logout()"></button>
+    </ul>
+  </div>
+</div>
+<p-dialog header="Header" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <form [formGroup]="productForm">
+    <div class="card p-4">
+      <h5>Product</h5>
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="firstname1">Title</label>
+          <input id="firstname1" type="text" formControlName="title" pInputText />
+        </div>
+        <div class="p-field">
+          <label for="description">Description</label>
+          <textarea id="address" type="text" rows="4" formControlName="description" pInputTextarea></textarea>
+        </div>
+        <div class="p-field">
+          <label for="image">Image</label>
+          <input type="file" name="file" id="file" accept="image/png, image/gif, image/jpeg" formControlName="img"
+            (change)="onFileChanged($event)" pInputText>
+        </div>
+        <div class="p-field">
+          <label for="image">Stock</label>
+          <p-dropdown [options]="stockOption" formControlName="inStock" optionLabel="value"></p-dropdown>
+        </div>
+        <div class="p-field">
+          <label for="image">Price</label>
+          <p-inputNumber [(ngModel)]="price" formControlName="price" inputId="currency-us" mode="currency"
+            currency="USD" locale="en-US">
+          </p-inputNumber>
+        </div>
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Save" (click)="saveData()"></p-button>
+    <p-button icon="pi pi-times" (click)="displayBasic=false" label="Cancle"></p-button>
+  </ng-template>
+</p-dialog>

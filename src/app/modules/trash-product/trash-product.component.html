@@ -1,0 +1,43 @@
+<div class="list-container">
+  <div class="row p-4">
+    <h2 class="card-title">Trash Product List</h2>
+    <ng-container *ngFor="let item of productList; let i = index">
+      <ng-container *ngIf="item['isActive'] == false">
+        <div class="col-4">
+          <div class="card">
+            <img
+              class="card-img-top add-cart"
+              [src]="item.img"
+              alt="prodImg"
+              height="100"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <hr>
+              <p class="card-text">
+                {{ item.description }}
+              </p>
+              <hr>
+              <p class="card-text text-primary">Price: {{ item.price }}</p>
+              <hr>
+              <p-badge [value]="item['inStock']['value']" *ngIf="item['inStock']['name'] === 'inStock'"  severity="success"  severity="success"></p-badge>
+              <p-badge [value]="item['inStock']['value']" *ngIf="item['inStock']['name'] === 'outOfStock'"  severity="danger"  severity="danger"></p-badge>
+              <hr>
+              <button
+                class="btn btn-green d-inline mr-2"
+                style="padding: 7px 12px"
+                (click)="addProduct(item)"
+              >
+                Restore
+              </button>
+              <button
+                class="btn btn-danger d-inline mx-2" (click)="deleteItem(item)">
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

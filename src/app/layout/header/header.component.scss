@@ -1,0 +1,16 @@
+.btn-green {
+    height: 40px;
+    font-size: 13px;
+    font-weight: 100 !important;
+}
+
+:host::ng-deep button.p-ripple.p-element.p-button.p-component.p-button-icon-only {
+    background-color: #24985fe3;
+    height: 40px;
+}
+
+:host::ng-deep button.p-ripple.p-element.p-button.p-component {
+    background-color: #3ca371;
+    height: 40px;
+    margin-left: 11px;
+}

@@ -1,0 +1,43 @@
+<div>
+  <!-- start page title -->
+  <div class="task-top-content">
+    <div class="task-top-content-left">
+      <button class="btn btn-lightgreen body-bold" routerLink="/">
+        <img src="assets/images/icons/left-arrow-lightgreen.svg" class="img-fluid" /><span>Back</span>
+      </button>
+    </div>
+  </div>
+  <div class="list-container mt-3">
+    <div class="row p-3">
+      <div class="col-4">
+        <img [src]="prodDetails.img" class="img-fluid" alt="image" style="height: 270px;" />
+      </div>
+      <div class="col-8">
+        <h3 class="card-title">{{ prodDetails.title }}</h3>
+        <hr />
+        <p class="card-text">{{ prodDetails.description }}</p>
+        <hr />
+        <p class="card-text"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto vel facilis sunt
+          recusandae ratione debitis, voluptates quis alias autem rerum sapiente illo et! Animi iure quam omnis velit
+          corrupti vel. </p>
+        <p class="card-text"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto vel facilis sunt
+          recusandae ratione debitis, voluptates quis alias autem rerum sapiente illo et! Animi iure quam omnis velit
+          corrupti vel. </p>
+        <p class="card-text"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto vel facilis sunt
+          recusandae ratione debitis, voluptates quis alias autem rerum sapiente illo et! Animi iure quam omnis velit
+          corrupti vel. </p>
+        <p class="card-text"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto vel facilis sunt
+          recusandae ratione debitis, voluptates quis alias autem rerum sapiente illo et! Animi iure quam omnis velit
+          corrupti vel. </p>
+        <p class="card-text text-primary">Price: ${{ prodDetails.price }}</p>
+        <p-badge [value]="prodDetails['inStock']['value']" *ngIf="prodDetails['inStock']['name'] === 'inStock'"
+          severity="success" severity="success"></p-badge>
+        <p-badge [value]="prodDetails['inStock']['value']" *ngIf="prodDetails['inStock']['name'] === 'outOfStock'"
+          severity="danger" severity="danger"></p-badge>
+        <hr />
+        <p-button icon="pi pi-shopping-cart" label="ADD TO CART" (click)="addProduct()"
+          *ngIf="prodDetails['inStock']['name'] !== 'outOfStock'"></p-button>
+      </div>
+    </div>
+  </div>
+</div>

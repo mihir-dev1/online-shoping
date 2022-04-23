@@ -1,0 +1,105 @@
+<p-toast></p-toast>
+<p-confirmDialog [style]="{ width: '50vw' }" [baseZIndex]="10000"></p-confirmDialog>
+<div class="list-container">
+  <div class="row">
+    <div class="col-2 border-right">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="inStock"
+          #onstock1 (change)="onStock(onstock1)" />
+        <label class="form-check-label" for="inlineRadio1">In Stock</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="outOfStock"
+          #onstock2 (change)="outOfStock(onstock2)" />
+        <label class="form-check-label" for="inlineRadio2">out of stock</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Reset" #Reset
+          (change)="resetStock(Reset)" />
+        <label class="form-check-label" for="inlineRadio3">Reset</label>
+      </div>
+    </div>
+    <div class="col-10 p-2">
+      <div class="row">
+        <h2 class="card-title">Product List</h2>
+        <section>
+          <div class="container py-5">
+            <div class="row">
+              <ng-container *ngFor="let item of productList; let i = index">
+                <ng-container *ngIf="item['isActive'] == true">
+                  <div class="col-md-6 col-lg-4 mb-4 mb-md-0" style="width: 360px;cursor: pointer;">
+                    <div class="card mb-4">
+                      <img [src]="item.img" class="card-img-top add-cart" alt="Laptop" (click)="productDetails(i)" />
+                      <div class="card-body" (click)="productDetails(i)">
+                        <div class="d-flex justify-content-between mb-3">
+                          <h5 class="mb-0">{{item.title}}</h5>
+                          <h5 class="text-dark mb-0">${{item.price}}</h5>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                          <p class="text-muted mb-0">{{item.description}}</p>
+                        </div>
+                        <p-badge [value]="item['inStock']['value']" *ngIf="item['inStock']['name'] === 'inStock'"
+                          severity="success" severity="success"></p-badge>
+                        <p-badge [value]="item['inStock']['value']" *ngIf="item['inStock']['name'] === 'outOfStock'"
+                          severity="danger" severity="danger"></p-badge>
+                      </div>
+                      <div class="d-flex p-3">
+                        <button class="btn btn-warning w-50" *ngIf="userRole == 1"
+                          style="padding: 4px 12px; color: white" (click)="updateProductDetails(i)">
+                          Update
+                        </button>
+                        <button class="btn btn-white-border mx-2 w-50" *ngIf="userRole == 1" (click)="deleteProduct(item)">
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <!-- <div *ngIf="productList.length == 0" class="item-not-found">
+    Product Not Found
+  </div> -->
+</div>
+
+<p-dialog header="Header" [(visible)]="displayBasic" [style]="{ width: '50vw' }" [baseZIndex]="10000">
+  <form [formGroup]="productForm">
+    <div class="card p-4">
+      <h5>Product</h5>
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="firstname1">Title</label>
+          <input id="firstname1" type="text" formControlName="title" pInputText />
+        </div>
+        <div class="p-field">
+          <label for="description">Description</label>
+          <textarea id="address" type="text" rows="4" formControlName="description" pInputTextarea></textarea>
+        </div>
+        <div class="p-field">
+          <label for="image">Image</label>
+          <input type="file" name="file" id="file" accept="image/png, image/gif, image/jpeg"
+            (change)="onFileChanged($event)" pInputText />
+        </div>
+        <div class="p-field">
+          <label for="image">Stock</label>
+          <p-dropdown [options]="stockOption" formControlName="inStock" optionLabel="value"></p-dropdown>
+        </div>
+        <div class="p-field">
+          <label for="image">Price</label>
+          <p-inputNumber formControlName="price" inputId="currency-us" mode="currency" currency="USD" locale="en-US">
+          </p-inputNumber>
+        </div>
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayBasic = false" (click)="updateProduct()" label="Save"
+      styleClass="p-button-text"></p-button>
+    <p-button icon="pi pi-times" (click)="displayBasic = false" label="Cancle"></p-button>
+  </ng-template>
+</p-dialog>

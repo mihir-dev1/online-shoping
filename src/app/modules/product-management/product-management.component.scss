@@ -1,0 +1,22 @@
+.border-right {
+  border-right: 1px solid #dee2e6!important;
+  min-height: 100vh;
+}
+
+.item-not-found {
+  text-align: center;
+  padding-top: 20%;
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.container.py-5 {
+  width: 100%;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.add-cart {
+  height:300px;
+  cursor: pointer;
+}

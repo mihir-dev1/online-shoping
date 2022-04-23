@@ -1,0 +1,47 @@
+<div class="leftside-menu">
+  <div class="logo-top">
+    <!-- LOGO -->
+    <a href="index.html" class="logo text-center logo-light">
+      <span class="logo-lg">
+        <!-- <img src="/assets/images//logo.svg" class="img-fluid" /> -->
+        <span class="logo-span">Product</span>
+      </span>
+      <span class="logo-sm">
+        <!-- <img src="/assets/images//logo.svg" /> -->
+        <span class="logo-span">Product</span>
+        <button class="button-menu-mobile open-left">
+          <img src="/assets/images/icons/menu.svg" class="img-fluid">
+        </button>
+      </span>
+
+    </a>
+    <button class="button-menu-mobile open-left">
+      <img src="/assets/images/icons/menu.svg" class="img-fluid">
+    </button>
+  </div>
+
+
+
+  <div id="leftside-menu-container" data-simplebar>
+    <!--- Sidemenu -->
+    <ul class="side-nav">
+      <li class="side-nav-item">
+        <a class="side-nav-link" routerLink="/">
+          <img  src="/assets/images/icons/home.svg">
+          <span> Home </span>
+        </a>
+      </li>
+
+      <li class="side-nav-item" *ngIf="userRole == 1">
+        <a class="side-nav-link" routerLink="/delete-products">
+          <img src="/assets/images/icons/Delete.svg">
+          <span> Trash </span>
+        </a>
+      </li>
+    </ul>
+    <!-- End Sidebar -->
+
+    <div class="clearfix"></div>
+  </div>
+  <!-- Sidebar -left -->
+</div>

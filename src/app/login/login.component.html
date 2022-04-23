@@ -1,0 +1,30 @@
+<p-toast></p-toast>
+<main class="main">
+  <div class="container">
+    <section class="wrapper">
+      <div class="heading">
+        <h1 class="text text-large">Login</h1>
+      </div>
+      <form [formGroup]="loginForm" class="form" novalidate>
+        <div class="input-control">
+          <label for="email" class="input-label" hidden>Email Address</label>
+          <input type="email" name="email" formControlName="email" class="input-field" placeholder="Email Address">
+        </div>
+        <span class="err-field m-3 text-danger" *ngIf="isError && this.loginForm.get('email')?.untouched">User Name is
+          required.</span>
+        <div class="err-field m-3 text-danger" *ngIf="isError && this.loginForm.get('email')?.invalid">
+          Email not valid.
+        </div>
+        <div class="input-control">
+          <label for="password" class="input-label" hidden>Password</label>
+          <input type="password" name="password" formControlName="password" class="input-field" placeholder="Password">
+        </div>
+        <span class="err-field m-3 text-danger" *ngIf="isError && this.loginForm.get('email')?.untouched">Password is
+          required.</span>
+        <div class="input-control">
+          <button type="button" class="input-submit" (click)="login()">Login</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</main>

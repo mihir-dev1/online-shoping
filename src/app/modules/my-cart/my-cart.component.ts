@@ -90,6 +90,7 @@ export class MyCartComponent implements OnInit {
         });
       }
     }
+    this._common.updateCartProd(this.cartList[id],id);
   }
 
   checkoutDetails() {
